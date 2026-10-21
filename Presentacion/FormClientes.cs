@@ -1,0 +1,14 @@
+using System; using System.Drawing; using System.Windows.Forms; using Entidades; using Negocio;
+namespace Presentacion { public class FormClientes:Form {
+ TextBox txtNombre=new TextBox(),txtApellido=new TextBox(),txtDni=new TextBox(),txtBuscar=new TextBox(); DataGridView dgvClientes=new DataGridView(); ClienteNegocio negocio=new ClienteNegocio();
+ public FormClientes(){Text="Clientes - Mystic Charm";Size=new Size(850,520);StartPosition=FormStartPosition.CenterParent;BackColor=Color.FromArgb(250,245,239); CrearLabel("Clientes",25,20,22);CrearLabel("Nombre",25,75);CrearLabel("Apellido",225,75);CrearLabel("DNI",425,75);txtNombre.SetBounds(25,100,180,25);txtApellido.SetBounds(225,100,180,25);txtDni.SetBounds(425,100,130,25);
+ Button a=Btn("Agregar",580,98);a.Click+=Agregar;Button m=Btn("Modificar",680,98);m.Click+=Modificar;Button e=Btn("Eliminar",680,135);e.Click+=Eliminar;CrearLabel("Buscar",25,140);txtBuscar.SetBounds(80,137,250,25);txtBuscar.TextChanged+=(s,e2)=>Refrescar();
+ dgvClientes.SetBounds(25,180,775,260);dgvClientes.ReadOnly=true;dgvClientes.SelectionMode=DataGridViewSelectionMode.FullRowSelect;dgvClientes.AutoSizeColumnsMode=DataGridViewAutoSizeColumnsMode.Fill;dgvClientes.SelectionChanged+=Seleccionar;Controls.AddRange(new Control[]{txtNombre,txtApellido,txtDni,txtBuscar,dgvClientes,a,m,e});Refrescar();}
+ Button Btn(string t,int x,int y){var b=new Button(){Text=t,Location=new Point(x,y),Size=new Size(90,28)};return b;} void CrearLabel(string t,int x,int y,float f=9){var l=new Label(){Text=t,Location=new Point(x,y),AutoSize=true,Font=new Font("Georgia",f)};Controls.Add(l);} 
+ void Agregar(object s,EventArgs e){if(Vacios())return;negocio.AltaCliente(new Cliente{Nombre=txtNombre.Text,Apellido=txtApellido.Text,Dni=txtDni.Text});Limpiar();Refrescar();}
+ void Modificar(object s,EventArgs e){if(dgvClientes.CurrentRow==null||Vacios())return;var c=(Cliente)dgvClientes.CurrentRow.DataBoundItem;c.Nombre=txtNombre.Text;c.Apellido=txtApellido.Text;c.Dni=txtDni.Text;negocio.ModificarCliente(c);Refrescar();}
+ void Eliminar(object s,EventArgs e){if(dgvClientes.CurrentRow==null)return;negocio.EliminarCliente((Cliente)dgvClientes.CurrentRow.DataBoundItem);Limpiar();Refrescar();}
+ bool Vacios(){if(string.IsNullOrWhiteSpace(txtNombre.Text)||string.IsNullOrWhiteSpace(txtApellido.Text)||string.IsNullOrWhiteSpace(txtDni.Text)){MessageBox.Show("Completá los datos del cliente.");return true;}return false;}
+ void Seleccionar(object s,EventArgs e){if(dgvClientes.CurrentRow?.DataBoundItem is Cliente c){txtNombre.Text=c.Nombre;txtApellido.Text=c.Apellido;txtDni.Text=c.Dni;}}
+ void Limpiar(){txtNombre.Clear();txtApellido.Clear();txtDni.Clear();} void Refrescar(){dgvClientes.DataSource=null;dgvClientes.DataSource=string.IsNullOrWhiteSpace(txtBuscar.Text)?negocio.ListarClientes():negocio.BuscarClientes(txtBuscar.Text);}
+}}
