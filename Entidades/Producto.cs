@@ -11,5 +11,11 @@ namespace Entidades
         public decimal PrecioUnitario { get; set; }
         public int Stock { get; set; }
         public string ImagenUrl { get; set; } // Propiedad para la ruta/URL
+
+        public override string ToString()
+        {
+            return Nombre;
+        }
+
     }
 }
