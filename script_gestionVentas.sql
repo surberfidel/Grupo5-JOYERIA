@@ -89,7 +89,7 @@ INSERT [dbo].[Productos] ([IdProducto], [Nombre], [Categoria], [Marca], [PrecioU
 INSERT [dbo].[Productos] ([IdProducto], [Nombre], [Categoria], [Marca], [PrecioUnitario], [Stock], [ImagenUrl]) VALUES (7, N'Pulsera Pandora', N'Pulseras', N'Pandora', CAST(46000.00 AS Decimal(18, 2)), 3, N'producto_7.jpg')
 INSERT [dbo].[Productos] ([IdProducto], [Nombre], [Categoria], [Marca], [PrecioUnitario], [Stock], [ImagenUrl]) VALUES (8, N'Pulsera Tous', N'Pulseras', N'Tous', CAST(41000.00 AS Decimal(18, 2)), 3, N'producto_8.jpg')
 INSERT [dbo].[Productos] ([IdProducto], [Nombre], [Categoria], [Marca], [PrecioUnitario], [Stock], [ImagenUrl]) VALUES (9, N'Pulsera Swarovski', N'Pulseras', N'Swarovski', CAST(45000.00 AS Decimal(18, 2)), 3, N'producto_9.jpg')
-INSERT [dbo].[Productos] ([IdProducto], [Nombre], [Categoria], [Marca], [PrecioUnitario], [Stock], [ImagenUrl]) VALUES (10, N'Aros Swarovski', N* 'Aros', N'Swarovski', CAST(36000.00 AS Decimal(18, 2)), 3, N'producto_10.jpg')
+INSERT [dbo].[Productos] ([IdProducto], [Nombre], [Categoria], [Marca], [PrecioUnitario], [Stock], [ImagenUrl]) VALUES (10, N'Aros Swarovski', N'Aros', N'Swarovski', CAST(36000.00 AS Decimal(18, 2)), 3, N'producto_10.jpg')
 INSERT [dbo].[Productos] ([IdProducto], [Nombre], [Categoria], [Marca], [PrecioUnitario], [Stock], [ImagenUrl]) VALUES (11, N'Anillo Tous', N'Anillos', N'Tous', CAST(39000.00 AS Decimal(18, 2)), 3, N'producto_11.jpg')
 SET IDENTITY_INSERT [dbo].[Productos] OFF
 GO
